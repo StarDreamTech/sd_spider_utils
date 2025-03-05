@@ -1,7 +1,10 @@
-def get_text_bs4(html):
+def get_text_bs4(html,remove_blank_lines=False):
     from bs4 import BeautifulSoup
     soup = BeautifulSoup(html, "html.parser")
-    return "\n".join(line.strip() for line in soup.text.splitlines() if line.strip())
+    if remove_blank_lines:
+        return "\n".join(line.strip() for line in soup.text.splitlines() if line.strip())
+    else:
+        return soup.text.strip()
 
 
 def get_text_xpath(text):
