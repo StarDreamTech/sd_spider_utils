@@ -18,15 +18,46 @@ def clean_text(text):
     # 移除多余的标点符号，例如连续的逗号或逗号后面紧跟空格
     text = text.replace(" ,", ",").replace(", ,", ",")
     return text
+def remove_extra_spaces(text: str) -> str:
+    """
+    移除字符串中的多个空格为单个空格。
+    :param text: 输入字符串
+    :return: 处理后的字符串
+    # 示例
+    text = "This   is   a   text     with  multiple     spaces."
+    cleaned_text = remove_extra_spaces(text)
+    print(cleaned_text)  # 输出: "This is a text with multiple spaces."
+    """
+    import re
+    return " ".join(text.split())
 
 
-import re
+def remove_extra_blank_spaces(text: str) -> str:
+    """
+    移除字符串中的多余空白字符（空格、制表符、换行符等），
+    并将其替换为单个空格。
+    
+    :param text: 输入字符串
+    :return: 处理后的字符串
+
+    # 示例
+    text = "This   is   a   text     with  multiple     spaces."
+    cleaned_text = remove_extra_spaces(text)
+    print(cleaned_text)  # 输出: "This is a text with multiple spaces."
+    """
+    import re
+    return re.sub(r'\s+', ' ', text).strip()
+
+
+
+
 
 
 def contains_chinese(text: str) -> bool:
     """
     使用正则表达式检查是否包含汉字
     """
+    import re
     return bool(re.search(r"[\u4e00-\u9fa5]", text))
 
 
@@ -36,8 +67,14 @@ def contains_date(text: str) -> bool:
     """
     return bool(re.search(r"\d{4}[-/年]\d{1,2}[-/月]\d{1,2}日?", text))
 
+import re
+if __name__ == '__main__':
+    text = "This   is   a   text     with  multiple     spaces."
+    # 使用正则表达式替换一个或多个空白字符（包括空格、制表符、换行符等）为一个空格
+    cleaned_text = re.sub(r'\s+', ' ', text).strip()
+    
+    print(cleaned_text)
 
-if __name__ == "__main__":
     """
     文本是否包含中文
     """
@@ -53,6 +90,5 @@ if __name__ == "__main__":
 
     print(contains_date(text1))  # True
     print(contains_date(text2))  # False
-if __name__ == "__main__":
     text = "Ｃａｆé['S.\u2009M. Koksbang\xa0', 'S.\u2009M. Koksbang']"  # 包含全角字符和组合字符
     normalize_unicode_text(text)
