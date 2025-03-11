@@ -1,28 +1,48 @@
-from datetime import datetime
+def clean_text(text: str) -> str:
+    # 替换非断空白符为普通空格
+    text = text.replace("\xa0", " ")
+    # 移除字符串两端的空格
+    text = text.strip()
+    # 替换多个空格为单个空格
+    text = " ".join(text.split())
+    # 移除多余的标点符号，例如连续的逗号或逗号后面紧跟空格
+    text = text.replace(" ,", ",").replace(", ,", ",")
+    return text
 
-def timestamp_to_datetime(timestamp: int) -> str:
-    """
-    将时间戳转换为年月日时分秒格式。
-    
-    :param timestamp: 时间戳（秒级）
-    :return: 格式化的日期时间字符串
-    """
-    return datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M:%S')
 
-def datetime_to_timestamp(date_str: str) -> int:
+def contains_chinese(text: str) -> bool:
     """
-    解析时间字符串为时间戳。
-    
-    :param date_str: 时间字符串，格式如 '2025-03-06 12:34:56'
-    :return: 对应的时间戳（秒级）
+    使用正则表达式检查是否包含汉字
     """
-    return int(datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S').timestamp())
+    import re
 
-if __name__=="__main__":
-    # 时间转换示例
-    timestamp = 1709810400
-    date_str = timestamp_to_datetime(timestamp)
-    print(date_str)  # 输出: "2024-03-07 00:00:00"
+    return bool(re.search(r"[\u4e00-\u9fa5]", text))
 
-    parsed_timestamp = datetime_to_timestamp("2024-03-07 00:00:00")
-    print(parsed_timestamp)  # 输出: 1709810400
+
+def contains_date(text: str) -> bool:
+    """
+    使用正则表达式检查是否包含类似 '2022年03月30日' 的日期
+    """
+    import re
+
+    return bool(re.search(r"\d{4}[-/年]\d{1,2}[-/月]\d{1,2}日?", text))
+
+
+if __name__ == "__main__":
+    """
+    文本是否包含中文
+    """
+    text1: str = "This is a te{||||  nmakldnsjdmksxm  15651654 st.把那家伙半小时·"
+    text2: str = "这是一个测试。"
+
+    print(contains_chinese(text1))  # False
+    print(contains_chinese(text2))  # True
+
+    # 测试
+    text1: str = "今天是2022年03月30日，天气晴。"
+    text2: str = "这是一个没有日期的文本。"
+    text3: str = "今天是2022 03 30。"
+
+    print(contains_date(text1))  # True
+    print(contains_date(text2))  # False
+    print(contains_date(text3))  # False
