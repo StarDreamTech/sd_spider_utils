@@ -1,0 +1,5 @@
+pre-commit
+Scrapy
+APScheduler
+beautifulsoup4
+SQLAlchemy
