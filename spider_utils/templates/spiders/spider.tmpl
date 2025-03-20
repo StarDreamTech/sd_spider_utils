@@ -1,0 +1,18 @@
+import scrapy
+
+
+class $classname(scrapy.Spider):
+    '''
+    运行命令：scrapy crawl $name -o $name.json
+    爬虫名称：
+    采集站点：
+    站点链接：
+    (1)静态页面提取或(2)接口数据：
+    采集思路备注：
+    '''
+    name = "$name"
+    allowed_domains = ["$domain"]
+    start_urls = ["$url"]
+
+    def parse(self, response):
+        print(response)
