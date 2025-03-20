@@ -1,3 +1,6 @@
+import re
+
+
 def normalize_unicode_text(text):
     """
     文本标准化：转换为标准形式
@@ -30,8 +33,6 @@ def remove_extra_spaces(text: str) -> str:
     cleaned_text = remove_extra_spaces(text)
     print(cleaned_text)  # 输出: "This is a text with multiple spaces."
     """
-    import re
-
     return " ".join(text.split())
 
 
@@ -66,10 +67,10 @@ def contains_date(text: str) -> bool:
     """
     使用正则表达式检查是否包含类似 '2022年03月30日' 的日期
     """
+    import re
+
     return bool(re.search(r"\d{4}[-/年]\d{1,2}[-/月]\d{1,2}日?", text))
 
-
-import re
 
 if __name__ == "__main__":
     text = "This   is   a   text     with  multiple     spaces."

@@ -1,15 +1,17 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0  # 指定版本号
+    rev: v4.6.0
     hooks:
-      - id: check-yaml  # 检查 YAML 文件格式
-      - id: end-of-file-fixer  # 确保文件以换行符结尾
-      - id: trailing-whitespace  # 删除行尾多余的空格
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
   - repo: https://github.com/psf/black
-    rev: 24.8.0  # 指定版本号
+    rev: 24.8.0
     hooks:
-      - id: black  # 自动格式化 Python 代码
+      - id: black
   - repo: https://github.com/pycqa/flake8
-    rev: 6.0.0  # 指定版本号
+    rev: 6.0.0
     hooks:
-      - id: flake8  # 检查 Python 代码风格
+      - id: flake8
+        args: [ "--ignore=E501" ]  # 忽略 E501（行长度限制）
