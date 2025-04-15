@@ -1,8 +1,9 @@
 import re
 
 
-def normalize_unicode_text(text):
+def normalize_text(text):
     """
+    normalize_unicode_text
     文本标准化：转换为标准形式
     """
     import unicodedata
@@ -92,4 +93,4 @@ if __name__ == "__main__":
     print(contains_date(text1))  # True
     print(contains_date(text2))  # False
     text = "Ｃａｆé['S.\u2009M. Koksbang\xa0', 'S.\u2009M. Koksbang']"  # 包含全角字符和组合字符
-    normalize_unicode_text(text)
+    normalize_text(text)

@@ -1,0 +1,29 @@
+[project]
+name = "sd_spider_utils"
+version = "1.0.1"
+description = "爬虫工具包，写爬虫更快！！！"
+readme = "README.rst"
+license = { file = "LICENSE" }
+authors = [
+    { name = "星梦", email = "cpython666@gmail.com" },
+]
+urls = { Homepage = "https://space.bilibili.com/1909782963" }
+requires-python = ">=3.5"
+dependencies = ["requests", "beautifulsoup4"]
+
+classifiers = [
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Natural Language :: Chinese (Simplified)",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.5",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Topic :: Software Development :: Libraries",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
