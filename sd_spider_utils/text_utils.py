@@ -1,16 +1,25 @@
 import re
 
-
 def normalize_text(text):
     """
-    normalize_unicode_text
-    文本标准化：转换为标准形式
+    文本标准化：转换为标准形式，并处理特殊字符。
+    - 使用 NFKC 进行 Unicode 标准化。
+    - 替换不间断空格（\xa0）为普通空格。
+    - 移除其他不可见的空白字符，如换行符、回车符、制表符等。
+    - 移除多余的空格，确保文本整洁。
     """
     import unicodedata
 
-    normalized_text = unicodedata.normalize("NFKC", text)
-    return normalized_text
+    if not isinstance(text, str):
+        return text  # 如果输入不是字符串，直接返回
 
+    # Unicode 标准化
+    text = unicodedata.normalize("NFKC", text)
+    # 移除多余的空格（多个空格替换为一个空格）
+    text = re.sub(r'\s+', ' ', text)
+    # 去除首尾空格
+    text = text.strip()
+    return text
 
 def clean_text(text: str):
     # 替换非断空白符为普通空格
